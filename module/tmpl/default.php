@@ -14,6 +14,8 @@ defined('_JEXEC') or die('Restricted access'); ?>
 
 		<input type="hidden" name="documentId" value="<?php echo $signingDocument->id ?>" id="documentId"/>
 		<input type="submit" name="submit" value="Begin Signing" id="ds-submit<?php echo $signingDocument->id; ?>"/>
+
+		<p class="foot">This will open a new window</p>
 	</form>
 <?php endif ?>	
 
