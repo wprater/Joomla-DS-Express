@@ -20,30 +20,30 @@ defined('_JEXEC') or die('Restricted access'); ?>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-
+    
+    function openDsSigningWindow(url)
+    {
+        window.open(url);
+        return true;
+    }
+    
 	// Submit the form and return a embedded DS Link
 	Ext.fly('ds-submit<?php echo $signingDocument->id; ?>').on('click', function(e, t) 
 	{
 		e.preventDefault();
+		Ext.get(t).dom.disabled = true;
 		
 		Ext.Ajax.request({
 			// Passing format=raw allows Joomla disable the layout
 			url: 'index.php?option=com_hello&format=raw&task=sign&id=<?php echo $signingDocument->id; ?>',
 			success: function(response, opts) 
 			{				
-				var el = {
-					tag: 'a',
-					href: response.responseText,
-					html: 'Open DocuSign window.',
-					target: '_blank'
-				};
-				Ext.get(t).replaceWith(el);
-				
-				// var obj = Ext.decode(response.responseText);
-				// 		      	console.dir(obj);		      
+			    Ext.get(t).dom.disabled = false;
+			    openDsSigningWindow(response.responseText);
 			},
 			failure: function(response, opts) 
 			{
+			    Ext.get(t).dom.disabled = false;
 				console.log('server-side failure with status code ' + response.status);
 			}
 		});
