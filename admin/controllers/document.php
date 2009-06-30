@@ -53,7 +53,7 @@ class DocumentsControllerDocument extends DocumentsController
 		$model = $this->getModel('document');
 
 		if ($model->store($post)) {
-			$msg = JText::_( 'Greeting Saved!' );
+			$msg = JText::_( 'Template Saved!' );
 		} else {
 			$msg = JText::_( 'Error Saving Signing Document' );
 		}
@@ -71,9 +71,9 @@ class DocumentsControllerDocument extends DocumentsController
 	{
 		$model = $this->getModel('document');
 		if(!$model->delete()) {
-			$msg = JText::_( 'Error: One or More Greetings Could not be Deleted' );
+			$msg = JText::_( 'Error: One or More Templates Could not be Deleted' );
 		} else {
-			$msg = JText::_( 'Greeting(s) Deleted' );
+			$msg = JText::_( 'Template(s) Deleted' );
 		}
 
 		$this->setRedirect( 'index.php?option=com_hello', $msg );
