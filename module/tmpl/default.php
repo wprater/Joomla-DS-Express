@@ -1,22 +1,52 @@
-<?php // no direct access
+<?php 
+// no direct access
 defined('_JEXEC') or die('Restricted access'); ?>
-<div class="bannergroup<?php echo $params->get( 'moduleclass_sfx' ) ?>">
 
-<?php if ($headerText) : ?>
-	<div class="bannerheader"><?php echo $headerText ?></div>
-<?php endif;
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/ext-core/3.0/ext-core-debug.js"></script>
 
-foreach($list as $item) :
+<div class="dsexpress<?php echo $params->get( 'moduleclass_sfx' ) ?>">
 
-	?><div class="banneritem<?php echo $params->get( 'moduleclass_sfx' ) ?>"><?php
-	echo modBannersHelper::renderBanner($params, $item);
-	?><div class="clr"></div>
-	</div>
-<?php endforeach; ?>
+<?php if (DsExpressHelper::isGuestUser()): ?>
+    <p>You need to login to sign "<?php echo $signingDocument->name; ?>".</p>
+<?php else: ?>
+	<form action="default_submit" id="document-signing<?php echo $signingDocument->id; ?>" method="post" accept-charset="utf-8">
+		<p>Please sign the "<?php echo $signingDocument->name; ?>" document.  You can start by clicking the button below.</p>
 
-<?php if ($footerText) : ?>
-	<div class="bannerfooter<?php echo $params->get( 'moduleclass_sfx' ) ?>">
-		 <?php echo $footerText ?>
-	</div>
-<?php endif; ?>
+		<input type="hidden" name="documentId" value="<?php echo $signingDocument->id ?>" id="documentId"/>
+		<input type="submit" name="submit" value="Begin Signing" id="ds-submit<?php echo $signingDocument->id; ?>"/>
+	</form>
+<?php endif ?>	
+
 </div>
+
+<script type="text/javascript" charset="utf-8">
+
+	// Submit the form and return a embedded DS Link
+	Ext.fly('ds-submit<?php echo $signingDocument->id; ?>').on('click', function(e, t) 
+	{
+		e.preventDefault();
+		
+		Ext.Ajax.request({
+			// Passing format=raw allows Joomla disable the layout
+			url: 'index.php?option=com_hello&format=raw&task=sign&id=<?php echo $signingDocument->id; ?>',
+			success: function(response, opts) 
+			{				
+				var el = {
+					tag: 'a',
+					href: response.responseText,
+					html: 'Open DocuSign window.',
+					target: '_blank'
+				};
+				Ext.get(t).replaceWith(el);
+				
+				// var obj = Ext.decode(response.responseText);
+				// 		      	console.dir(obj);		      
+			},
+			failure: function(response, opts) 
+			{
+				console.log('server-side failure with status code ' + response.status);
+			}
+		});
+	});
+	
+</script>

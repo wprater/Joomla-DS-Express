@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>DS Express</name>
+	<author>DocuSign</author>
+	<creationDate>June 2009</creationDate>
+	<copyright></copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>will@mercurycloud.com</authorEmail>
+	<authorUrl>www.mercurycluod.com</authorUrl>
+	<version>1.0</version>
+	<description>DESCBANNER</description>
+	<files>
+		<filename module="mod_dsexpress">mod_dsexpress.php</filename>
+	</files>
+	
+	<params addpath="/administrator/components/com_poll/elements">
+		<param name="id" type="signingdocument" default="" label="Signing Document" description="PARAMMODULEDSEXPRESS" />
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+		<!-- just gives us a little room between the previous paramter and the next -->
+		<!-- <param name="@spacer" type="spacer" default="" label="" description="" /> -->
+	</params>
+	
+</install>
