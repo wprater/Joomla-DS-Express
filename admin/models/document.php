@@ -1,34 +1,14 @@
 <?php
-/**
- * Hello Model for Hello World Component
- * 
- * @package    Joomla.Tutorials
- * @subpackage Components
- * @link http://docs.joomla.org/Developing_a_Model-View-Controller_Component_-_Part_4
- * @license		GNU/GPL
- */
 
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
-
-set_include_path(get_include_path() 
-				. PATH_SEPARATOR
-				. JPATH_ADMINISTRATOR.DS.'components'.DS.'com_hello'.DS.'lib');
-
-require_once (dirname(dirname(__FILE__)).DS.'helper.php');
 require_once('Docusign'.DS.'Envelope.php');
 
 
-/**
- * Hello Hello Model
- *
- * @package    Joomla.Tutorials
- * @subpackage Components
- */
-class DocumentsModelDocument extends JModel
+class DsExpressModelDocument extends JModel
 {
 	/**
 	 * Constructor that retrieves the ID from the request
@@ -44,13 +24,6 @@ class DocumentsModelDocument extends JModel
 		$this->setId((int)$array[0]);
 	}
 
-	/**
-	 * Method to set the hello identifier
-	 *
-	 * @access	public
-	 * @param	int Hello identifier
-	 * @return	void
-	 */
 	function setId($id)
 	{
 		// Set id and wipe data
@@ -58,25 +31,22 @@ class DocumentsModelDocument extends JModel
 		$this->_data	= null;
 	}
 
-	/**
-	 * Method to get a hello
-	 * @return object with data
-	 */
 	function &getData()
 	{
 		// Load the data
 		if (empty( $this->_data )) {
-			$query = <<<SQL
-			SELECT * FROM #__dsexpress_documents
+			$this->_db->setQuery(<<<SQL
+			    SELECT * FROM `#__dsexpress_documents`
 				WHERE id = {$this->_id}
-SQL;
-			$this->_db->setQuery( $query );
+SQL
+            );
 			$this->_data = $this->_db->loadObject();
 		}
 		if (!$this->_data) {
-			$this->_data = new stdClass();
-			$this->_data->id = 0;
-			$this->_data->greeting = null;
+			$this->_data =& $this->getTable();
+            // $this->_data->id = 0;
+            // $this->_data->name = null;
+            // $this->_data->subject = null;
 		}
 		return $this->_data;
 	}

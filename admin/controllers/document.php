@@ -1,23 +1,9 @@
 <?php
-/**
- * Hello Controller for Hello World Component
- * 
- * @package    Joomla.Tutorials
- * @subpackage Components
- * @link http://docs.joomla.org/Developing_a_Model-View-Controller_Component_-_Part_4
- * @license		GNU/GPL
- */
 
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-/**
- * Hello Hello Controller
- *
- * @package    Joomla.Tutorials
- * @subpackage Components
- */
-class DocumentsControllerDocument extends DocumentsController
+class DsExpressControllerDocument extends DsExpressController
 {
 	/**
 	 * constructor (registers additional tasks to methods)
@@ -59,7 +45,7 @@ class DocumentsControllerDocument extends DocumentsController
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway
-		$link = 'index.php?option=com_hello';
+		$link = 'index.php?option=com_dsexpress';
 		$this->setRedirect($link, $msg);
 	}
 
@@ -76,7 +62,7 @@ class DocumentsControllerDocument extends DocumentsController
 			$msg = JText::_( 'Template(s) Deleted' );
 		}
 
-		$this->setRedirect( 'index.php?option=com_hello', $msg );
+		$this->setRedirect( 'index.php?option=com_dsexpress', $msg );
 	}
 
 	/**
@@ -86,6 +72,6 @@ class DocumentsControllerDocument extends DocumentsController
 	function cancel()
 	{
 		$msg = JText::_( 'Operation Cancelled' );
-		$this->setRedirect( 'index.php?option=com_hello', $msg );
+		$this->setRedirect( 'index.php?option=com_dsexpress', $msg );
 	}
 }
