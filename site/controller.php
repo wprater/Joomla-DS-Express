@@ -4,9 +4,9 @@ jimport('joomla.application.component.controller');
 
 
 require_once('Docusign'.DS.'Envelope.php');
-require_once(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_hello'.DS.'helper.php');
+require_once(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_dsexpress'.DS.'helper.php');
 
-class HelloController extends JController
+class DocumentController extends JController
 {
 	var $_envelope; 
 	
@@ -50,8 +50,10 @@ class HelloController extends JController
         $this->_envelope->AuthenticationInstant = date('Y-m-d\Th:m:s', strtotime($userData->lastvisitDate)) . 'Z';
         $this->_envelope->AuthenticationMethod = 'Password';
         $this->_envelope->SecurityDomain = 'Joomla Built-in Auth';
-        
-        $this->_envelope->setupDefaultCallbackUrls(JURI::base(), '?option=com_dsexpress&controller=docusign');
+
+        // Remove everything leading up to // for the base URI
+        $this->_envelope->setupDefaultCallbackUrls(array_pop(explode('//', JURI::base())), 
+                                                    '?option=com_dsexpress&view=callback', '&type=');
 		
 		// Add logged in Joomla user as the recipient
 		$captiveUserId = (string) uniqid();
