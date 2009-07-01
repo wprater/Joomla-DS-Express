@@ -37,7 +37,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
 		
 		Ext.Ajax.request({
 			// Passing format=raw allows Joomla disable the layout
-			url: 'index.php?option=com_hello&format=raw&task=sign&id=<?php echo $signingDocument->id; ?>',
+			url: 'index.php?option=com_dsexpress&format=raw&task=sign&id=<?php echo $signingDocument->id; ?>',
 			success: function(response, opts) 
 			{				
 			    Ext.get(t).dom.disabled = false;

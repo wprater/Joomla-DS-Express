@@ -8,14 +8,14 @@
 	<authorEmail>will@mercurycloud.com</authorEmail>
 	<authorUrl>www.mercurycluod.com</authorUrl>
 	<version>1.0</version>
-	<description>DESCBANNER</description>
+	<description></description>
 	<files>
 		<filename module="mod_dsexpress">mod_dsexpress.php</filename>
 	</files>
 	
-	<params addpath="/administrator/components/com_poll/elements">
-		<param name="id" type="signingdocument" default="" label="Signing Document" description="PARAMMODULEDSEXPRESS" />
-		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+	<params addpath="/administrator/components/com_dsexpress/elements">
+		<param name="id" type="signingdocument" default="" label="Signing Document" description="" />
+        <!-- <param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="" /> -->
 		<!-- just gives us a little room between the previous paramter and the next -->
 		<!-- <param name="@spacer" type="spacer" default="" label="" description="" /> -->
 	</params>
