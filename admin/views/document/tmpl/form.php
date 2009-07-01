@@ -19,6 +19,26 @@
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="documentName">
+					<?php echo JText::_( 'Email Subject' ); ?>:
+				</label>
+			</td>
+			<td>
+				<input class="text_area" type="text" name="subject" id="subject" size="32" maxlength="250" value="<?php echo $this->document->subject;?>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
+				<label for="emailBlurp">
+					<?php echo JText::_( 'Email Blurp' ); ?>:
+				</label>
+			</td>
+			<td>
+				<input class="text_area" type="text" name="emailBlurp" id="emailBlurp" size="32" maxlength="250" value="<?php echo $this->document->emailBlurp;?>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
+				<label for="documentName">
 					<?php echo JText::_( 'Document Name' ); ?>:
 				</label>
 			</td>
@@ -43,7 +63,7 @@
 </div>
 <div class="clr"></div>
 
-<input type="hidden" name="option" value="com_hello" />
+<input type="hidden" name="option" value="com_dsexpress" />
 <input type="hidden" name="id" value="<?php echo $this->document->id; ?>" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="controller" value="document" />
