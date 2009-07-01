@@ -12,7 +12,10 @@
 				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
 			</th>			
 			<th>
-				<?php echo JText::_( 'Document Name' ); ?>
+				<?php echo JText::_( 'Signing Name' ); ?>
+			</th>
+			<th>
+				<?php echo JText::_( 'Subject' ); ?>
 			</th>
 		</tr>
 	</thead>
@@ -21,7 +24,7 @@
 	for ($i=0, $n=count( $this->items ); $i < $n; $i++)	{
 		$row = &$this->items[$i];
 		$checked 	= JHTML::_('grid.id',   $i, $row->id );
-		$link 		= JRoute::_( 'index.php?option=com_hello&controller=document&task=edit&cid[]='. $row->id );
+		$link 		= JRoute::_( 'index.php?option=com_dsexpress&controller=document&task=edit&cid[]='. $row->id );
 		?>
 		<tr class="<?php echo "row$k"; ?>">
 			<td>
@@ -33,6 +36,9 @@
 			<td>
 				<a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
 			</td>
+			<td>
+				<a href="<?php echo $link; ?>"><?php echo $row->subject; ?></a>
+			</td>
 		</tr>
 		<?php
 		$k = 1 - $k;
@@ -41,8 +47,8 @@
 	</table>
 </div>
 
-<input type="hidden" name="option" value="com_hello" />
+<input type="hidden" name="option" value="com_dsexpress" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />
-<input type="hidden" name="controller" value="hello" />
+<input type="hidden" name="controller" value="document" />
 </form>
