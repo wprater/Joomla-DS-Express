@@ -73,7 +73,7 @@ class Docusign_Envelope
 	/**
 	 * This will setup a default MVC like callback URL structure base on the passed domain name
 	 */
-	public function setupDefaultCallbackUrls($basePath = null, $controller = null, $domain = null, $useSsl = false)
+	public function setupDefaultCallbackUrls($basePath = null, $controller = null, $prependCallback = '/', $domain = null, $useSsl = false)
 	{
 		$domain = (null === $domain) ? (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $domain) : $domain;
 		$controller = (null === $controller) ? 'ds-signing' : $controller;
@@ -83,7 +83,7 @@ class Docusign_Envelope
 		$urls = array();
 		foreach ($this->_allowedCallbackUrlProperties as $callbackName) {
 			$callback = substr($callbackName, 2);	// remove 'On'
-			$urls[$callbackName] = ($useSsl ? 'https://' : 'http://') . "{$domain}/{$callbackUrl}/$callback";
+			$urls[$callbackName] = ($useSsl ? 'https://' : 'http://') . "{$domain}/{$callbackUrl}{$prependCallback}$callback";
 		}
 		$this->_callbackUrls = $urls;
 	}
